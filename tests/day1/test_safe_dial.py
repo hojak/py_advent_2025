@@ -1,3 +1,4 @@
+import pytest
 from day1.SafeDial import SafeDial
 
 
@@ -7,7 +8,11 @@ def test_create_dial():
     assert testee.position == 50
 
 
-def test_rotate():
+@pytest.mark.parametrize("amount, expected_position", [
+    (10, 60),
+    (-10, 40),
+])
+def test_rotate(amount, expected_position):
     testee = SafeDial()
-    testee.rotate(10)
-    assert testee.position == 60
+    testee.rotate(amount)
+    assert testee.position == expected_position
