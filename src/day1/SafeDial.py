@@ -12,7 +12,12 @@ class SafeDial:
 
     def rotate(self, amount: int):
         next_position = self.position + amount
-        self.rotations_over_zero += floor(next_position/SafeDial.SIZE_OF_WHEEL)
+        rotations = floor(next_position / SafeDial.SIZE_OF_WHEEL)
+        if (amount > 0):
+            self.rotations_over_zero += rotations
+        elif (next_position <= 0):
+            self.rotations_over_zero += -rotations + 1
+                
         self.position = next_position % SafeDial.SIZE_OF_WHEEL
 
     def instruction_to_rotation(instruction: str) -> int:

@@ -54,7 +54,10 @@ def test_get_code_from_sequence(sequence, expected_code):
     ([49], 0),
     ([50], 1),
     ([150], 2),
-    ([10, 40], 1)
+    ([10, 40], 1),
+    ([-49], 0),
+    ([-50], 1),
+    ([-150], 2)
 ])
 def test_count_rotations_over_zero(rotations, expected_result):
     testee = SafeDial()
