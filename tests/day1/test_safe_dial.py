@@ -47,3 +47,9 @@ L5'''
 ])
 def test_get_code_from_sequence(sequence, expected_code):
     assert SafeDial.get_code_from_sequence(sequence) == expected_code
+
+
+def test_count_rotations_over_zero_initialized_with_0():
+    testee = SafeDial()
+    assert testee.get_rotations_over_zero() == 0
+

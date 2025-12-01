@@ -33,3 +33,6 @@ class SafeDial:
     
     def get_code_from_sequence(positions: list[int]) -> int:
         return len(list(filter(lambda x: x == 0, positions)))
+    
+    def get_rotations_over_zero(self) -> int:
+        return 0
