@@ -10,3 +10,11 @@ class Solver(problemSolver):
 
         print("The code for part 1 is:", code)
 
+    def solve_part2(self):
+        safe_dial = SafeDial()
+        for line in self.parsed_input.splitlines():
+            rotation = SafeDial.instruction_to_rotation(line)
+            safe_dial.rotate(rotation)
+
+        print("The code for part 2 is: ", safe_dial.get_rotations_over_zero())
+
