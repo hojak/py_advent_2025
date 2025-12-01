@@ -38,3 +38,12 @@ R48
 L5'''
     expected = [50, 82, 52, 0, 95]
     assert SafeDial.instructions_to_number_sequence(instructions) == expected
+
+
+@pytest.mark.parametrize("sequence, expected_code", [
+    ([50, 82, 52, 0, 95], 1),
+    ([50, 0, 52, 0, 0], 3),
+    ([50, 82, 52, 1, 2, 3, 95], 0)
+])
+def test_get_code_from_sequence(sequence, expected_code):
+    assert SafeDial.get_code_from_sequence(sequence) == expected_code

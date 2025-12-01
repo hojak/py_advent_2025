@@ -30,3 +30,6 @@ class SafeDial:
             positions.append(dial.position)
 
         return positions
+    
+    def get_code_from_sequence(positions: list[int]) -> int:
+        return len(list(filter(lambda x: x == 0, positions)))
