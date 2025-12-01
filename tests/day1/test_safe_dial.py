@@ -29,3 +29,12 @@ def test_rotate(amount, expected_position):
 ])
 def test_translate_instruction_to_rotation(instruction, expected_rotation):
     assert SafeDial.instruction_to_rotation(instruction) == expected_rotation
+
+
+def test_instructions_to_number_sequence():
+    instructions = '''L68
+L30
+R48
+L5'''
+    expected = [50, 82, 52, 0, 95]
+    assert SafeDial.instructions_to_number_sequence(instructions) == expected

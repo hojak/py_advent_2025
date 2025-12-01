@@ -19,3 +19,14 @@ class SafeDial:
             return -amount
         else:
             raise ValueError(f"Invalid direction: {direction}")
+        
+    def instructions_to_number_sequence(instructions: str) -> list[int]:
+        dial = SafeDial()
+        positions = [dial.position]
+
+        for line in instructions.splitlines():
+            rotation = SafeDial.instruction_to_rotation(line)
+            dial.rotate(rotation)
+            positions.append(dial.position)
+
+        return positions
