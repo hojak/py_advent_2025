@@ -49,7 +49,18 @@ def test_get_code_from_sequence(sequence, expected_code):
     assert SafeDial.get_code_from_sequence(sequence) == expected_code
 
 
-def test_count_rotations_over_zero_initialized_with_0():
+@pytest.mark.parametrize("rotations, expected_result", [
+    ([], 0),
+    ([49], 0),
+    ([50], 1),
+    ([150], 2),
+    ([10, 40], 1)
+])
+def test_count_rotations_over_zero(rotations, expected_result):
     testee = SafeDial()
-    assert testee.get_rotations_over_zero() == 0
+
+    for rotation in rotations:
+        testee.rotate(rotation)
+
+    assert testee.get_rotations_over_zero() == expected_result
 

@@ -1,13 +1,19 @@
+from math import floor
+
+
 class SafeDial:
     SIZE_OF_WHEEL = 100
 
     position: int = 50
+    rotations_over_zero = 0
 
     def __init__(self):
         pass
 
     def rotate(self, amount: int):
-        self.position = (self.position + amount) % SafeDial.SIZE_OF_WHEEL
+        next_position = self.position + amount
+        self.rotations_over_zero += floor(next_position/SafeDial.SIZE_OF_WHEEL)
+        self.position = next_position % SafeDial.SIZE_OF_WHEEL
 
     def instruction_to_rotation(instruction: str) -> int:
         direction = instruction[0]
@@ -35,4 +41,5 @@ class SafeDial:
         return len(list(filter(lambda x: x == 0, positions)))
     
     def get_rotations_over_zero(self) -> int:
-        return 0
+        return self.rotations_over_zero
+
