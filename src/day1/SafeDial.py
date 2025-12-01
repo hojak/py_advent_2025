@@ -16,8 +16,12 @@ class SafeDial:
         if (amount > 0):
             self.rotations_over_zero += rotations
         elif (next_position <= 0):
-            self.rotations_over_zero += -rotations + 1
-                
+            self.rotations_over_zero += -rotations
+            if (next_position % SafeDial.SIZE_OF_WHEEL== 0):
+                self.rotations_over_zero += 1
+            if (self.position == 0):
+                self.rotations_over_zero -= 1
+
         self.position = next_position % SafeDial.SIZE_OF_WHEEL
 
     def instruction_to_rotation(instruction: str) -> int:
