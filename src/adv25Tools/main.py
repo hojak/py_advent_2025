@@ -1,9 +1,11 @@
 import sys
+import importlib
 
 
 def main(day: str, input_file) -> None:
-    mod = __import__("day" + day + ".Solver", fromlist=['Solver'])
-    solver_class = getattr(mod, 'Solver')
+    module_name = f"day{day}.solver"
+    module = importlib.import_module(module_name)
+    solver_class = getattr(module, 'Solver')
 
     solver = solver_class("data/day"+day+"/"+input_file)
 

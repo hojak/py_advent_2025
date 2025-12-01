@@ -1,5 +1,5 @@
 import pytest
-from day1.SafeDial import SafeDial
+from day1.safeDial import SafeDial
 
 
 def test_create_dial():
