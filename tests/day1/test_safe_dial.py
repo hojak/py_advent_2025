@@ -19,3 +19,13 @@ def test_rotate(amount, expected_position):
     testee = SafeDial()
     testee.rotate(amount)
     assert testee.position == expected_position
+
+
+@pytest.mark.parametrize("instruction, expected_rotation", [
+    ("R10", 10),
+    ("L10", -10),
+    ("R5", 5),
+    ("L5", -5),
+])
+def test_translate_instruction_to_rotation(instruction, expected_rotation):
+    assert SafeDial.instruction_to_rotation(instruction) == expected_rotation
