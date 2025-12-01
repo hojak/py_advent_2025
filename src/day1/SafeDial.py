@@ -5,4 +5,4 @@ class SafeDial:
         pass
 
     def rotate(self, amount: int):
-        self.position = self.position + amount
+        self.position = (self.position + amount) % 100

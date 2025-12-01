@@ -11,6 +11,9 @@ def test_create_dial():
 @pytest.mark.parametrize("amount, expected_position", [
     (10, 60),
     (-10, 40),
+    (50, 0),
+    (-50, 0),
+    (-51, 99)
 ])
 def test_rotate(amount, expected_position):
     testee = SafeDial()
