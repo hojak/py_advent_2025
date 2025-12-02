@@ -1,9 +1,23 @@
+import pytest
 from day2.idValidator import IdValidator
 
 
-def test_is_valid_is_true():
-    assert IdValidator.is_valid("111000")
+@pytest.mark.parametrize("id", [
+    "111000",
+    "101",
+    "1",
+    "1221",
+    "111"
+])
+def test_is_valid_is_true(id):
+    assert IdValidator.is_valid(id)
 
 
-def test_is_valid_is_false():
-    assert not IdValidator.is_valid("11")
+@pytest.mark.parametrize("id", [
+    "11",
+    "1010",
+    "10101010",
+    "123123"
+])
+def test_is_valid_is_false(id):
+    assert not IdValidator.is_valid(id)
