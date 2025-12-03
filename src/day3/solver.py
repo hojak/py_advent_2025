@@ -6,3 +6,6 @@ class Solver(ProblemSolver):
 
     def solve_part1(self):
         print("Result: ", Bank.sum_of_joltages(self.parsed_input))
+
+    def solve_part2(self):
+        print("Result: ", Bank.sum_of_joltages(self.parsed_input, 12))
