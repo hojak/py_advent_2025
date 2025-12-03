@@ -42,7 +42,11 @@ ptw . --now --last-failed --new-first
 
 ### Run the Day 1 Solution
 ```shell
-python src/adv24_tools/main.py 1 input.txt
+python src/adv25Tools/main.py 1 input.txt
+```
+or 
+```shell
+python -m adv25Tools.main 1 input.txt
 ```
 
 ## Links

@@ -1,8 +1,8 @@
 from day1.safeDial import SafeDial
-from adv25Tools.problemSolver import problemSolver
+from adv25Tools.problemSolver import ProblemSolver
 
 
-class Solver(problemSolver):
+class Solver(ProblemSolver):
 
     def solve_part1(self):
         sequence = SafeDial.instructions_to_number_sequence(self.parsed_input)

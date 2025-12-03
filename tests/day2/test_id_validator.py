@@ -10,7 +10,8 @@ from day2.idValidator import IdValidator
     "111"
 ])
 def test_is_valid_is_true(id):
-    assert IdValidator.is_valid(id)
+    validator = IdValidator()
+    assert validator.is_valid(id)
 
 
 @pytest.mark.parametrize("id", [
@@ -20,7 +21,30 @@ def test_is_valid_is_true(id):
     "123123"
 ])
 def test_is_valid_is_false(id):
-    assert not IdValidator.is_valid(id)
+    validator = IdValidator()
+    assert not validator.is_valid(id)
+
+
+@pytest.mark.parametrize("id, number_of_parts", [
+    ("1212", 2),
+    ("111", 3),
+    ("121212", 3),
+    ("11111", 5),
+    ("123123123123123", 5),
+])
+def test_is_repeated_pattern_is_true(id, number_of_parts):
+    validator = IdValidator()
+    assert validator.is_repeated_pattern(id, number_of_parts)
+
+
+@pytest.mark.parametrize("id, number_of_parts", [
+    ("12121", 2),
+    ("111", 2),
+    ("121212", 2),
+])
+def test_is_repeated_pattern_is_false(id, number_of_parts):
+    validator = IdValidator()
+    assert not validator.is_repeated_pattern(id, number_of_parts)
 
 
 @pytest.mark.parametrize("start, end, expected_result", [
@@ -31,10 +55,32 @@ def test_is_valid_is_false(id):
     (12, 21, [])
 ])
 def test_get_invalid_ids_from_range(start, end, expected_result):
-    result = IdValidator.get_invalid_ids(start, end)
+    validator = IdValidator()
+    result = validator.get_invalid_ids(start, end)
+    assert expected_result == result
+
+
+@pytest.mark.parametrize("start, end, number_of_parts, expected_result", [
+    (11, 22, 2, [11, 22]),
+    (95, 115, 3, [111]),
+    (95, 115, 2, [99]),
+])
+def test_get_invalid_ids_from_range_for_different_part_size(
+    start, end, number_of_parts, expected_result
+):
+    validator = IdValidator([number_of_parts])
+    result = validator.get_invalid_ids(start, end)
     assert expected_result == result
 
 
 def test_get_final_checksum_result():
-    result = IdValidator.get_checksum("11-22,95-115,12-21")
+    validator = IdValidator()
+    result = validator.get_checksum("11-22,95-115,12-21")
     assert result == 33 + 99
+
+
+def test_get_final_checksum_result_with_more_possible_parts():
+    validator = IdValidator([2, 3])
+
+    result = validator.get_checksum("11-22,95-115")
+    assert result == 11 + 22 + 99 + 111
