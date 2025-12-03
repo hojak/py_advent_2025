@@ -1,5 +1,5 @@
 
-class problemSolver:
+class ProblemSolver:
     input_file: str
     input: str
     parsed_input: any
