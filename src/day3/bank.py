@@ -10,21 +10,16 @@ class Bank:
         return int(self.bankstr[index])
 
     def highest_joltage(self, size=2) -> int:
-        indices = [0, self.len()-1, self.len()]
+        indices = list(range(self.len()-size+1, self.len()+1))
+        indices.insert(0, 0)
 
-        largest_found = 0
-        for index in range(indices[0], indices[1]):
-            found_int = self.battery(index)
-            if (found_int > largest_found):
-                largest_found = found_int
-                indices[1] = index
-
-        largest_found = 0
-        for index in range(indices[1]+1, indices[2]):
-            found_int = self.battery(index)
-            if (found_int > largest_found):
-                largest_found = found_int
-                indices[2] = index
+        for digit in range(1, size+1):
+            largest_found = 0
+            for index in range(indices[digit-1]+1, indices[digit]):
+                found_int = self.battery(index)
+                if (found_int > largest_found):
+                    largest_found = found_int
+                    indices[digit] = index
 
         return self.get_power(indices)
     
