@@ -3,6 +3,9 @@ from math import floor
 
 class IdValidator:
 
+    def is_valid_instance(self, some_id) -> bool:
+        return IdValidator.is_valid(some_id)
+
     def is_valid(some_id) -> bool:
         if (isinstance(some_id, int)):
             some_id = str(some_id)
@@ -11,9 +14,11 @@ class IdValidator:
         return len(some_id) % 2 != 0 or some_id[:half] != some_id[half:]
 
     def get_invalid_ids(start: int, end: int) -> list:
+        self = IdValidator()
+
         result = []
         for id in range(start, end+1):
-            if (not IdValidator.is_valid(id)):
+            if (not self.is_valid_instance(id)):
                 result.append(id)
         return result
 
@@ -26,3 +31,4 @@ class IdValidator:
             result += sum(invalid_ids)
 
         return result
+

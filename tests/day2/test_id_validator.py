@@ -10,7 +10,8 @@ from day2.idValidator import IdValidator
     "111"
 ])
 def test_is_valid_is_true(id):
-    assert IdValidator.is_valid(id)
+    validator = IdValidator()
+    assert validator.is_valid_instance(id)
 
 
 @pytest.mark.parametrize("id", [
@@ -20,7 +21,8 @@ def test_is_valid_is_true(id):
     "123123"
 ])
 def test_is_valid_is_false(id):
-    assert not IdValidator.is_valid(id)
+    validator = IdValidator()
+    assert not validator.is_valid_instance(id)
 
 
 @pytest.mark.parametrize("start, end, expected_result", [
