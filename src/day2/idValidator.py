@@ -3,10 +3,7 @@ from math import floor
 
 class IdValidator:
 
-    def is_valid_instance(self, some_id) -> bool:
-        return IdValidator.is_valid(some_id)
-
-    def is_valid(some_id) -> bool:
+    def is_valid(self, some_id) -> bool:
         if (isinstance(some_id, int)):
             some_id = str(some_id)
 
@@ -18,7 +15,7 @@ class IdValidator:
 
         result = []
         for id in range(start, end+1):
-            if (not self.is_valid_instance(id)):
+            if (not self.is_valid(id)):
                 result.append(id)
         return result
 
