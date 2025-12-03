@@ -16,3 +16,14 @@ class IdValidator:
             if (not IdValidator.is_valid(id)):
                 result.append(id)
         return result
+    
+    def get_checksum(input: str) -> int:
+        result = 0
+        ranges = input.split(",")
+        for range in ranges:
+            (start, end) = range.split("-")
+            invalid_ids = IdValidator.get_invalid_ids(int(start), int(end))
+            result += sum(invalid_ids)
+            
+        return result
+            
