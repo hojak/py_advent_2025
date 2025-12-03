@@ -1,8 +1,8 @@
 from adv25Tools.problemSolver import ProblemSolver
-from day3.highest_joltage import sum_of_joltages
+from day3.bank import Bank
 
 
 class Solver(ProblemSolver):
 
     def solve_part1(self):
-        print("Result: ", sum_of_joltages(self.parsed_input))
+        print("Result: ", Bank.sum_of_joltages(self.parsed_input))
