@@ -25,6 +25,28 @@ def test_is_valid_is_false(id):
     assert not validator.is_valid(id)
 
 
+@pytest.mark.parametrize("id, number_of_parts", [
+    ("1212", 2),
+    ("111", 3),
+    ("121212", 3),
+    ("11111", 5),
+    ("123123123123123", 5),
+])
+def test_is_repeated_pattern_is_true(id, number_of_parts):
+    validator = IdValidator()
+    assert validator.is_repeated_pattern(id, number_of_parts)
+
+
+@pytest.mark.parametrize("id, number_of_parts", [
+    ("12121", 2),
+    ("111", 2),
+    ("121212", 2),
+])
+def test_is_repeated_pattern_is_false(id, number_of_parts):
+    validator = IdValidator()
+    assert not validator.is_repeated_pattern(id, number_of_parts)
+
+
 @pytest.mark.parametrize("start, end, expected_result", [
     (11, 22, [11, 22]),
     (95, 115, [99]),

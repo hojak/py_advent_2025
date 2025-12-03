@@ -28,8 +28,6 @@ class IdValidator:
         return result
 
     def get_checksum(self, input: str) -> int:
-        self = IdValidator()
-        
         result = 0
         ranges = input.split(",")
         for range in ranges:
