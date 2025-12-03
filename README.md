@@ -40,6 +40,11 @@ python -m pytest
 ptw . --now --last-failed --new-first
 ```
 
+### Data Input
+
+Place input data for the single riddles per day into subfolders of the `data` directory, e.g. `data/day3/input.txt`.
+As the input for the riddles is personalized and re-publication prohibited, this data is not part of this repository.
+
 ### Run the Day 1 Solution
 ```shell
 python src/adv25Tools/main.py 1 input.txt
