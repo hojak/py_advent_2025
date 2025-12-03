@@ -1,5 +1,5 @@
 import pytest
-from day3.highest_joltage import highest_joltage
+from day3.highest_joltage import highest_joltage, sum_of_joltages
 
 
 @pytest.mark.parametrize("bank, expected_result", [
@@ -12,3 +12,8 @@ from day3.highest_joltage import highest_joltage
 ])
 def test_highest_joltage(bank, expected_result):
     assert highest_joltage(bank) == expected_result
+
+
+def test_get_sum_of_joltages():
+    assert sum_of_joltages("12\n912\n001215") == 12+92+25
+    

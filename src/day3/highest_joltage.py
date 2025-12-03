@@ -15,3 +15,10 @@ def highest_joltage(bank: str) -> int:
             largest_second = int_at_second
 
     return largest_first * 10 + largest_second
+
+
+def sum_of_joltages(banks: str) -> int:
+    result = 0
+    for bank in banks.splitlines():
+        result += highest_joltage(bank)
+    return result
