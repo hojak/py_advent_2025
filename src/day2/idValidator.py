@@ -17,7 +17,7 @@ class IdValidator:
                 result.append(id)
         return result
 
-    def get_checksum(input: str) -> int:
+    def get_checksum(self, input: str) -> int:
         self = IdValidator()
         
         result = 0

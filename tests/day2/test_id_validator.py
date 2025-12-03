@@ -39,5 +39,6 @@ def test_get_invalid_ids_from_range(start, end, expected_result):
 
 
 def test_get_final_checksum_result():
-    result = IdValidator.get_checksum("11-22,95-115,12-21")
+    validator = IdValidator()
+    result = validator.get_checksum("11-22,95-115,12-21")
     assert result == 33 + 99
