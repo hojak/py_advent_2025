@@ -60,7 +60,27 @@ def test_get_invalid_ids_from_range(start, end, expected_result):
     assert expected_result == result
 
 
+@pytest.mark.parametrize("start, end, number_of_parts, expected_result", [
+    (11, 22, 2, [11, 22]),
+    (95, 115, 3, [111]),
+    (95, 115, 2, [99]),
+])
+def test_get_invalid_ids_from_range_for_different_part_size(
+    start, end, number_of_parts, expected_result
+):
+    validator = IdValidator([number_of_parts])
+    result = validator.get_invalid_ids(start, end)
+    assert expected_result == result
+
+
 def test_get_final_checksum_result():
     validator = IdValidator()
     result = validator.get_checksum("11-22,95-115,12-21")
     assert result == 33 + 99
+
+
+def test_get_final_checksum_result_with_more_possible_parts():
+    validator = IdValidator([2, 3])
+
+    result = validator.get_checksum("11-22,95-115")
+    assert result == 11 + 22 + 99 + 111

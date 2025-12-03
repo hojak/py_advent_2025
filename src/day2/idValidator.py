@@ -3,14 +3,20 @@ from math import floor
 
 class IdValidator:
 
-    def __init__(self):
-        pass
+    possible_number_of_parts = []
+
+    def __init__(self, possible_number_of_parts=[2]) -> None:
+        self.possible_number_of_parts = possible_number_of_parts
 
     def is_valid(self, some_id) -> bool:
         if (isinstance(some_id, int)):
             some_id = str(some_id)
 
-        return not self.is_repeated_pattern(some_id, 2)
+        for number_of_parts in self.possible_number_of_parts:
+            if self.is_repeated_pattern(some_id, number_of_parts):
+                return False
+            
+        return True
     
     def is_repeated_pattern(self, some_id: str, number_of_parts: int) -> bool:
         if len(some_id) % number_of_parts != 0:
