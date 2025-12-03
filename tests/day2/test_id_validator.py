@@ -33,7 +33,8 @@ def test_is_valid_is_false(id):
     (12, 21, [])
 ])
 def test_get_invalid_ids_from_range(start, end, expected_result):
-    result = IdValidator.get_invalid_ids(start, end)
+    validator = IdValidator()
+    result = validator.get_invalid_ids(start, end)
     assert expected_result == result
 
 
