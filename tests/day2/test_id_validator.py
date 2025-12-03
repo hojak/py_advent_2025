@@ -21,7 +21,8 @@ def test_is_valid_is_true(id):
 ])
 def test_is_valid_is_false(id):
     assert not IdValidator.is_valid(id)
-    
-    
+
+
 def test_get_invalid_ids_from_range():
-    pass
+    result = IdValidator.get_invalid_ids(1, 22)
+    assert [11, 22] == result
