@@ -14,6 +14,7 @@ def test_highest_joltage(bankstr, expected_result):
     bank = Bank(bankstr)
     assert bank.highest_joltage() == expected_result
 
+
 @pytest.mark.parametrize("bankstr, size, expected_result", [
     ("987654321", 2, 98),
     ("1", 1, 1),
@@ -30,4 +31,8 @@ def test_highest_joltage_with_size(bankstr, size, expected_result):
 
 def test_get_sum_of_joltages():
     assert Bank.sum_of_joltages("12\n912\n001215") == 12+92+25
+    
+    
+def test_get_sum_of_joltages_with_size():
+    assert Bank.sum_of_joltages("987654321111111\n234234234234278", 12) == 987654321111 + 434234234278
     

@@ -22,16 +22,17 @@ class Bank:
                     indices[digit] = index
 
         return self.get_power(indices)
-    
+
     def get_power(self, indices: list[int]) -> int:
         str = ""
         for index in indices:
             str += self.bankstr[index]
+
         return int(str)
 
-    def sum_of_joltages(banks: str) -> int:
+    def sum_of_joltages(banks: str, size=2) -> int:
         result = 0
         for bankstr in banks.splitlines():
             bank = Bank(bankstr)
-            result += bank.highest_joltage()
+            result += bank.highest_joltage(size)
         return result
