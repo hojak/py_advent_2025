@@ -52,3 +52,18 @@ class PaperWarehouse(StringMap):
 
         return marked_warehouse
 
+    def number_of_totally_removable_rolls(self) -> int:
+        result = 0
+
+        work_warehouse = PaperWarehouse(str(self))
+
+        found = 1
+        while found > 0:
+            marked_warehouse = work_warehouse.mark_rolls_for_removal()
+            found = marked_warehouse.content.count('x')
+            work_warehouse = PaperWarehouse(str(marked_warehouse).replace('x', '.'))
+            result += found
+
+        return result
+
+

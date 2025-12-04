@@ -58,3 +58,9 @@ def test_mark_rolls_for_removal():
     marked = testee.mark_rolls_for_removal()
     assert str(marked) == "x@x\n@@@\n.x."
 
+
+def test_remove_all_possible_rolls():
+    testee = PaperWarehouse("@@@\n@@@\n.@.")
+    result = testee.number_of_totally_removable_rolls()
+    assert result == 7
+
