@@ -38,9 +38,14 @@ class PaperWarehouse(StringMap):
     def number_of_movable_rolls(self) -> int:
         result = 0
 
+        marked_warehouse = PaperWarehouse(str(self))
+
         for y in range(self.height):
             for x in range(self.width):
                 if self.is_movable(x, y):
                     result += 1
+                    marked_warehouse.set_char_at(Coordinates(x, y), 'X')
+
+        print("Movable Paper Rolls:\n", str(marked_warehouse))
 
         return result
