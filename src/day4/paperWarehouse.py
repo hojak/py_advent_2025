@@ -34,3 +34,13 @@ class PaperWarehouse(StringMap):
                 neighbors.append(position)
 
         return neighbors
+
+    def number_of_movable_rolls(self) -> int:
+        result = 0
+
+        for y in range(self.height):
+            for x in range(self.width):
+                if self.is_movable(x, y):
+                    result += 1
+
+        return result

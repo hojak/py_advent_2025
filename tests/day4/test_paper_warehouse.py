@@ -37,3 +37,10 @@ def test_is_occupied():
 def test_is_movable(layout, x, y, expected):
     testee = PaperWarehouse(layout)
     assert testee.is_movable(x, y) is expected
+
+
+def test_number_of_movable_rolls():
+    testee = PaperWarehouse("@@@\n@@@\n.@.")
+    assert testee.number_of_movable_rolls() == 5
+
+
