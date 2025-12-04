@@ -1,4 +1,4 @@
-from adv24Tools.Coordinates import Coordinates
+from adv25Tools.coordinates import Coordinates
 
 import math
 import re
