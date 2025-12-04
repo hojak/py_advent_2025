@@ -18,7 +18,7 @@ class PaperWarehouse(StringMap):
             if self.is_occupied(location.x, location.y):
                 occupied_neighbors += 1
 
-        return occupied_neighbors <= 4
+        return occupied_neighbors < 4
     
     def get_neighbor_coordinates(self, x: int, y: int) -> list[Coordinates]:
         neighbors = []

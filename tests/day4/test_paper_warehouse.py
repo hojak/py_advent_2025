@@ -28,7 +28,8 @@ def test_is_occupied():
 
 @pytest.mark.parametrize("layout, x, y, expected", [
     ("@@.\n@.@\n...", 1, 1, False),
-    ("@@.\n@@@\n...", 1, 1, True),
+    ("@@.\n@@@\n...", 1, 1, False),
+    (".@.\n.@@\n...", 1, 1, True),
     ("@@.\n@@@\n.@.", 1, 1, False),
     ("@@.\n@@@\n.@.", 0, 0, True),
     ("@@@\n@@@\n.@.", 1, 0, False),
@@ -38,9 +39,16 @@ def test_is_movable(layout, x, y, expected):
     testee = PaperWarehouse(layout)
     assert testee.is_movable(x, y) is expected
 
+# @@@
+# @@@
+#  @
+# => 
+# X@X
+# @@@
+#  X
+
 
 def test_number_of_movable_rolls():
     testee = PaperWarehouse("@@@\n@@@\n.@.")
-    assert testee.number_of_movable_rolls() == 5
-
+    assert testee.number_of_movable_rolls() == 3
 
