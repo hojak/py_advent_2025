@@ -52,3 +52,9 @@ def test_number_of_movable_rolls():
     testee = PaperWarehouse("@@@\n@@@\n.@.")
     assert testee.number_of_movable_rolls() == 3
 
+
+def test_mark_rolls_for_removal():
+    testee = PaperWarehouse("@@@\n@@@\n.@.")
+    marked = testee.mark_rolls_for_removal()
+    assert str(marked) == "x@x\n@@@\n.x."
+
