@@ -36,6 +36,10 @@ class PaperWarehouse(StringMap):
         return neighbors
 
     def number_of_movable_rolls(self) -> int:
+        warehouse_with_marked_rolls = self.mark_rolls_for_removal()
+        return warehouse_with_marked_rolls.content.count('x')
+
+    def mark_rolls_for_removal(self):
         result = 0
 
         marked_warehouse = PaperWarehouse(str(self))
@@ -44,8 +48,22 @@ class PaperWarehouse(StringMap):
             for x in range(self.width):
                 if self.is_movable(x, y):
                     result += 1
-                    marked_warehouse.set_char_at(Coordinates(x, y), 'X')
+                    marked_warehouse.set_char_at(Coordinates(x, y), 'x')
 
-        print("Movable Paper Rolls:\n", str(marked_warehouse))
+        return marked_warehouse
+
+    def number_of_totally_removable_rolls(self) -> int:
+        result = 0
+
+        work_warehouse = PaperWarehouse(str(self))
+
+        found = 1
+        while found > 0:
+            marked_warehouse = work_warehouse.mark_rolls_for_removal()
+            found = marked_warehouse.content.count('x')
+            work_warehouse = PaperWarehouse(str(marked_warehouse).replace('x', '.'))
+            result += found
 
         return result
+
+
