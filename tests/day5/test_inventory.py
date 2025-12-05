@@ -40,3 +40,14 @@ def test_adding_two_fresh_id_ranges():
 
     assert inventory.is_fresh(20) is True
 
+
+def test_adding_overlapping_fresh_id_ranges():
+    inventory = Inventory()
+    inventory.add_fresh_id_range(5, 10)
+    inventory.add_fresh_id_range(8, 15)
+
+    assert inventory.is_fresh(4) is False
+    assert inventory.is_fresh(16) is False
+
+    for id in range(5, 16):
+        assert inventory.is_fresh(id) is True

@@ -1,6 +1,6 @@
 class Inventory:
-
-    fresh_ranges = []
+    def __init__(self) -> None:
+        self.fresh_ranges = []
 
     def is_in_range(id: int, range: tuple) -> bool:
         return range[0] <= id <= range[1]
@@ -35,7 +35,6 @@ class Inventory:
 
     def is_fresh(self, id: int) -> bool:
         range = self.find_nearest_smaller_range(id)
-
         return range is not None and Inventory.is_in_range(id, range)
 
     def add_fresh_id_range(self, start_id: int, end_id: int) -> None:
