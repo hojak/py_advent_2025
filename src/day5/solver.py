@@ -25,3 +25,7 @@ class Solver(ProblemSolver):
                 print("found fresh item: ", id)
 
         print("\nTotally found ", number_of_fresh_items, " fresh items.")
+
+    def solve_part2(self):
+        result = self.inventory.get_number_of_possible_fresh_ids()
+        print("Number of possible ids of fresh items: ", result)
