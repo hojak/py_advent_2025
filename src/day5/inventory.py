@@ -46,13 +46,12 @@ class Inventory:
         return range is not None and Inventory.is_in_range(id, range)
 
     def add_fresh_id_range(self, start_id: int, end_id: int) -> None:
-        index = 0
-
-        # todo: optimize with binary search
-        while (index < len(self.fresh_ranges) and
-               self.fresh_ranges[index][0] < start_id):
+        index = self.find_index_of_nearest_smaller_range(start_id)
+        if index is None:
+            index = 0
+        else:
             index += 1
-
+            
         if (index > 0 and self.fresh_ranges[index-1][1] >= end_id):
             pass
 
