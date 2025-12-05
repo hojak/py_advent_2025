@@ -46,6 +46,8 @@ def test_adding_overlapping_fresh_id_ranges():
     inventory.add_fresh_id_range(5, 10)
     inventory.add_fresh_id_range(8, 15)
 
+    assert inventory.fresh_ranges[0] == (5, 15)
+
     assert inventory.is_fresh(4) is False
     assert inventory.is_fresh(16) is False
 
