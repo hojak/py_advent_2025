@@ -16,3 +16,27 @@ def test_adding_one_fresh_id_range():
     assert inventory.is_fresh(5) is True
     assert inventory.is_fresh(6) is True
     assert inventory.is_fresh(7) is True
+
+
+def test_adding_two_fresh_id_ranges():
+    inventory = Inventory()
+    inventory.add_fresh_id_range(5, 7)
+    inventory.add_fresh_id_range(9, 10)
+    inventory.add_fresh_id_range(20, 21)
+
+    assert inventory.is_fresh(1) is False
+    assert inventory.is_fresh(2) is False
+    assert inventory.is_fresh(3) is False
+    assert inventory.is_fresh(4) is False
+    assert inventory.is_fresh(8) is False
+    assert inventory.is_fresh(11) is False
+    assert inventory.is_fresh(33) is False
+
+    assert inventory.is_fresh(5) is True
+    assert inventory.is_fresh(6) is True
+    assert inventory.is_fresh(7) is True
+    assert inventory.is_fresh(9) is True
+    assert inventory.is_fresh(10) is True
+
+    assert inventory.is_fresh(20) is True
+
