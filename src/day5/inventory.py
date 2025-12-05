@@ -51,7 +51,7 @@ class Inventory:
             index = 0
         else:
             index += 1
-            
+
         if (index > 0 and self.fresh_ranges[index-1][1] >= end_id):
             pass
 
@@ -73,6 +73,9 @@ class Inventory:
         else:
             self.fresh_ranges.insert(index, (start_id, end_id))
 
+        self.possibly_merge_adjacent_ranges(index)
+
+    def possibly_merge_adjacent_ranges(self, index: int) -> None:
         if (index < len(self.fresh_ranges) - 1 and 
                 self.fresh_ranges[index][1]+1 >= self.fresh_ranges[index + 1][0]):
             range_to_merge = self.fresh_ranges.pop(index + 1)
@@ -82,4 +85,4 @@ class Inventory:
                 self.fresh_ranges[index-1][1]+1 >= self.fresh_ranges[index][0]):
             range_to_merge = self.fresh_ranges.pop(index)
             self.add_fresh_id_range(range_to_merge[0], range_to_merge[1])
-            
+    
