@@ -85,4 +85,9 @@ class Inventory:
                 self.fresh_ranges[index-1][1]+1 >= self.fresh_ranges[index][0]):
             range_to_merge = self.fresh_ranges.pop(index)
             self.add_fresh_id_range(range_to_merge[0], range_to_merge[1])
-    
+
+    def get_number_of_possible_fresh_ids(self) -> int:
+        total = 0
+        for range in self.fresh_ranges:
+            total += range[1] - range[0] + 1
+        return total

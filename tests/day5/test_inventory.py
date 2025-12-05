@@ -105,3 +105,12 @@ def test_merging():
     inventory.add_fresh_id_range(3, 11)
 
     assert inventory.fresh_ranges == [(1, 12)]
+
+
+def test_get_numer_of_possible_fresh_ids():
+    inventory = Inventory()
+    inventory.add_fresh_id_range(5, 10)
+    inventory.add_fresh_id_range(15, 20)
+    inventory.add_fresh_id_range(14, 16)
+    
+    assert inventory.get_number_of_possible_fresh_ids() == 13
