@@ -77,3 +77,12 @@ def test_adding_range_enclosing_one_existing():
     inventory.add_fresh_id_range(5, 10)
 
     assert inventory.fresh_ranges[0] == (5, 10)
+
+
+def test_adding_directly_neighboring_ranges():
+    inventory = Inventory()
+    inventory.add_fresh_id_range(4, 5)
+    inventory.add_fresh_id_range(6, 7)
+    inventory.add_fresh_id_range(2, 3)
+
+    assert inventory.fresh_ranges[0] == (2, 7)

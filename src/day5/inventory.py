@@ -40,6 +40,7 @@ class Inventory:
     def add_fresh_id_range(self, start_id: int, end_id: int) -> None:
         index = 0
 
+        # todo: optimize with binary search
         while (index < len(self.fresh_ranges) and
                self.fresh_ranges[index][0] < start_id):
             index += 1
@@ -47,16 +48,20 @@ class Inventory:
         if (index > 0 and self.fresh_ranges[index-1][1] >= end_id):
             pass
 
-        elif (index > 0 and self.fresh_ranges[index-1][1] >= start_id):
+        # merge with previous range
+        elif (index > 0 and self.fresh_ranges[index-1][1]+1 >= start_id):
             self.fresh_ranges[index-1] = (self.fresh_ranges[index-1][0], end_id)
 
+        # consume found range
         elif (index < len(self.fresh_ranges) and
               self.fresh_ranges[index][1] <= end_id):
             self.fresh_ranges[index] = (start_id, end_id)
 
+        # merge with found range
         elif (index < len(self.fresh_ranges) and
-              self.fresh_ranges[index][0] <= end_id):
+              self.fresh_ranges[index][0] <= end_id+1):
             self.fresh_ranges[index] = (start_id, self.fresh_ranges[index][1])
 
+        # insert new range
         else:
             self.fresh_ranges.insert(index, (start_id, end_id))
