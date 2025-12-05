@@ -95,3 +95,14 @@ def test_mering_two_existing_ranges():
     inventory.add_fresh_id_range(4, 5)
 
     assert inventory.fresh_ranges == [(2, 7)]
+
+
+def test_merging():
+    inventory = Inventory()
+    inventory.add_fresh_id_range(1, 4)
+    inventory.add_fresh_id_range(7, 8)
+    inventory.add_fresh_id_range(10, 12)
+    inventory.add_fresh_id_range(3, 11)
+
+    assert inventory.fresh_ranges == [(1, 12)]
+    
