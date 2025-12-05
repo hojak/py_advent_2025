@@ -10,7 +10,7 @@ class Inventory:
             return None
         if (self.fresh_ranges[len(self.fresh_ranges) - 1][0] <= id):
             return self.fresh_ranges[len(self.fresh_ranges) - 1]
-        
+
         left_index = 0
         right_index = len(self.fresh_ranges) - 1
 
@@ -27,7 +27,7 @@ class Inventory:
                 left_index = mid_index
             else:
                 right_index = mid_index
-            
+
         if (self.fresh_ranges[left_index][0] <= id):
             return self.fresh_ranges[left_index]
         else:
@@ -39,4 +39,10 @@ class Inventory:
         return range is not None and Inventory.is_in_range(id, range)
 
     def add_fresh_id_range(self, start_id: int, end_id: int) -> None:
-        self.fresh_ranges.append((start_id, end_id))
+        index = 0
+
+        while (index < len(self.fresh_ranges) and
+               self.fresh_ranges[index][0] < start_id):
+            index += 1
+
+        self.fresh_ranges.insert(index, (start_id, end_id))

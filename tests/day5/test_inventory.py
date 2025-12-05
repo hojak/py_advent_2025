@@ -20,9 +20,9 @@ def test_adding_one_fresh_id_range():
 
 def test_adding_two_fresh_id_ranges():
     inventory = Inventory()
+    inventory.add_fresh_id_range(20, 21)
     inventory.add_fresh_id_range(5, 7)
     inventory.add_fresh_id_range(9, 10)
-    inventory.add_fresh_id_range(20, 21)
 
     assert inventory.is_fresh(1) is False
     assert inventory.is_fresh(2) is False
