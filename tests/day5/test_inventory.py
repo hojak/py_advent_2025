@@ -105,4 +105,3 @@ def test_merging():
     inventory.add_fresh_id_range(3, 11)
 
     assert inventory.fresh_ranges == [(1, 12)]
-    

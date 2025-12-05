@@ -3,13 +3,20 @@ class Inventory:
         self.fresh_ranges = []
 
     def is_in_range(id: int, range: tuple) -> bool:
-        return range[0] <= id <= range[1]
+        return range is not None and range[0] <= id <= range[1]
 
     def find_nearest_smaller_range(self, id: int) -> tuple | None:
+        index = self.find_index_of_nearest_smaller_range(id)
+        if (index is None):
+            return None
+        
+        return self.fresh_ranges[index]
+
+    def find_index_of_nearest_smaller_range(self, id: int) -> int | None:
         if (len(self.fresh_ranges) == 0 or self.fresh_ranges[0][0] > id):
             return None
         if (self.fresh_ranges[len(self.fresh_ranges) - 1][0] <= id):
-            return self.fresh_ranges[len(self.fresh_ranges) - 1]
+            return len(self.fresh_ranges) - 1
 
         left_index = 0
         right_index = len(self.fresh_ranges) - 1
@@ -29,12 +36,13 @@ class Inventory:
                 right_index = mid_index
 
         if (self.fresh_ranges[left_index][0] <= id):
-            return self.fresh_ranges[left_index]
+            return left_index
         else:
             return None
 
     def is_fresh(self, id: int) -> bool:
         range = self.find_nearest_smaller_range(id)
+
         return range is not None and Inventory.is_in_range(id, range)
 
     def add_fresh_id_range(self, start_id: int, end_id: int) -> None:
