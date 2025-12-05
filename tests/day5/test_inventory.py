@@ -69,3 +69,11 @@ def test_adding_range_within_another():
     inventory.add_fresh_id_range(7, 9)
 
     assert inventory.fresh_ranges[0] == (5, 10)
+
+
+def test_adding_range_enclosing_one_existing():
+    inventory = Inventory()
+    inventory.add_fresh_id_range(7, 9)
+    inventory.add_fresh_id_range(5, 10)
+
+    assert inventory.fresh_ranges[0] == (5, 10)

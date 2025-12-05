@@ -50,7 +50,11 @@ class Inventory:
         elif (index > 0 and self.fresh_ranges[index-1][1] >= start_id):
             self.fresh_ranges[index-1] = (self.fresh_ranges[index-1][0], end_id)
 
-        elif (index < len(self.fresh_ranges) and 
+        elif (index < len(self.fresh_ranges) and
+              self.fresh_ranges[index][1] <= end_id):
+            self.fresh_ranges[index] = (start_id, end_id)
+
+        elif (index < len(self.fresh_ranges) and
               self.fresh_ranges[index][0] <= end_id):
             self.fresh_ranges[index] = (start_id, self.fresh_ranges[index][1])
 
