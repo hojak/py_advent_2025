@@ -20,20 +20,23 @@ def test_add_lines():
     worksheet.add_line("2 2 2 2")
 
     assert worksheet.get_grand_total() == 12
-    
-    
+
+
 def test_set_operants():   
     worksheet = Worksheet()
     worksheet.add_line("1 1 1 1")
     worksheet.add_line("2 3 2 4")
-    
-    worksheet.set_operants("+ * + *")
+
+    worksheet.set_operants("+ * + *  ")
 
     assert worksheet.get_grand_total() == 13
-    
-    
-def test_multiply_white_spaces():
+
+
+def test_multple_white_spaces():
     worksheet = Worksheet()
     worksheet.add_line("1  1  1    1  ")
-    
-    assert worksheet.get_grand_total() == 4    
+    worksheet.add_line("    1  1  1    1  ")
+
+    worksheet.set_operants("  *  + +   *   ")
+
+    assert worksheet.get_grand_total() == 6

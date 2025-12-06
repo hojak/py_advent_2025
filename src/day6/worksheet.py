@@ -27,7 +27,7 @@ class Worksheet:
             return self.add_column(index)
 
     def add_line(self, line: str):
-        numbers_in_line = re.split(r' +', line)
+        numbers_in_line = re.split(r' +', line.strip())
 
         if (len(self.number_sheet) == 0):
             self.init_numbers(len(line))
@@ -42,13 +42,16 @@ class Worksheet:
             self.number_sheet.append([])
 
     def set_operants(self, operants_string: str):
-        self.operants = re.split(r' +', operants_string)
+        self.operants = re.split(r' +', operants_string.strip())
 
     def add_column(self, index):
-        return sum(self.number_sheet[index])
+        result = sum(self.number_sheet[index])
+        print("Column(added) ", index, " -> ", result)
+        return result
 
     def multiply_column(self, index):
         result = 1
         for factor in self.number_sheet[index]:
-            result *= factor
+            result = result * factor
+        print("Column(multiplied) ", index, " -> ", result)
         return result
