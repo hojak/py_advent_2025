@@ -46,12 +46,10 @@ class Worksheet:
 
     def add_column(self, index):
         result = sum(self.number_sheet[index])
-        print("Column(added) ", index, " -> ", result)
         return result
 
     def multiply_column(self, index):
         result = 1
         for factor in self.number_sheet[index]:
             result = result * factor
-        print("Column(multiplied) ", index, " -> ", result)
         return result
