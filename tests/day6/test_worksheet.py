@@ -30,3 +30,10 @@ def test_set_operants():
     worksheet.set_operants("+ * + *")
 
     assert worksheet.get_grand_total() == 13
+    
+    
+def test_multiply_white_spaces():
+    worksheet = Worksheet()
+    worksheet.add_line("1  1  1    1  ")
+    
+    assert worksheet.get_grand_total() == 4    

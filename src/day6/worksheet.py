@@ -1,3 +1,6 @@
+import re
+
+
 class Worksheet:
 
     def __init__(self):
@@ -24,13 +27,14 @@ class Worksheet:
             return self.add_column(index)
 
     def add_line(self, line: str):
-        numbers_in_line = line.split(' ')
+        numbers_in_line = re.split(r' +', line)
 
         if (len(self.number_sheet) == 0):
             self.init_numbers(len(line))
 
         for index in range(0, len(numbers_in_line)):
-            self.number_sheet[index].append(int(numbers_in_line[index]))
+            if (len(numbers_in_line[index]) > 0):
+                self.number_sheet[index].append(int(numbers_in_line[index]))
 
     def init_numbers(self, length):
         self.number_sheet = []
@@ -38,7 +42,7 @@ class Worksheet:
             self.number_sheet.append([])
 
     def set_operants(self, operants_string: str):
-        self.operants = operants_string.split(' ')
+        self.operants = re.split(r' +', operants_string)
 
     def add_column(self, index):
         return sum(self.number_sheet[index])
