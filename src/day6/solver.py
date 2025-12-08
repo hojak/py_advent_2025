@@ -1,4 +1,5 @@
 from adv25Tools.problemSolver import ProblemSolver
+from day6.cephalopods_math import CephalopodsMath
 from day6.worksheet import Worksheet
 
 
@@ -13,3 +14,8 @@ class Solver(ProblemSolver):
                 worksheet.set_operants(line)
 
         print("summing up: ", worksheet.get_grand_total())
+
+    def solve_part2(self):
+        math = CephalopodsMath(self.parsed_input)
+
+        print("Result: ", math.get_result())
