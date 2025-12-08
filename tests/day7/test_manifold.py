@@ -51,3 +51,15 @@ def test_number_of_timelines_for_a_splitted_beam():
     manifold.fire_beam()
 
     assert manifold.get_number_of_timelines() == 2
+
+
+def test_timeslines_for_joining_beam_paths():
+    manifold = Manifold("..S..\n.....\n..^..\n.....\n.^.^.\n.....")
+    manifold.fire_beam()
+
+    print(manifold.timelines_per_row)
+
+    assert manifold.get_beam_layout() == "..S..\n..|..\n.|v|.\n.|.|.\n|v|v|\n|.|.|"
+    assert manifold.get_number_of_timelines() == 4
+
+    assert len(manifold.timelines_per_row) == len(manifold.beam_layout)
