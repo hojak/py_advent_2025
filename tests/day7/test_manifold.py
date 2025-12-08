@@ -44,3 +44,10 @@ def test_number_of_timelines_for_a_single_beam():
     manifold.fire_beam()
 
     assert manifold.get_number_of_timelines() == 1
+
+
+def test_number_of_timelines_for_a_splitted_beam():
+    manifold = Manifold(".S.\n...\n.^.\n...")
+    manifold.fire_beam()
+
+    assert manifold.get_number_of_timelines() == 2
