@@ -47,6 +47,11 @@ class Manifold:
 
     def get_number_of_splitted_beams(self) -> int:
         return "".join(self.beam_layout).count("v")
+    
+    def get_number_of_timelines(self) -> int:
+        return 1
 
     def replace_char_at(string: str, index: int, new_char: str) -> str:
         return string[:index] + new_char + string[index + 1:]
+    
+
