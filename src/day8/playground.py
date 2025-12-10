@@ -1,4 +1,4 @@
-from day8.Circuit import Curcuit
+from day8.circuit import Curcuit
 
 
 class Playground:
@@ -35,3 +35,17 @@ class Playground:
 
     def get_circuits(self) -> list:
         return self.circuits
+
+    def connect_boxes(self, box_a, box_b):
+        circuit_of_a = self.find_circuit_containing(box_a)
+        circuit_of_b = self.find_circuit_containing(box_b)
+
+        if (circuit_of_a != circuit_of_b):
+            circuit_of_a.merge_with(circuit_of_b)
+            self.circuits.remove(circuit_of_b)
+
+    def find_circuit_containing(self, junction_box) -> Curcuit:
+        for circuit in self.circuits:
+            if junction_box in circuit.get_junction_boxes():
+                return circuit
+        return None
