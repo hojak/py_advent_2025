@@ -1,4 +1,5 @@
 from day8.circuit import Circuit
+from day8.junctionBox import JunctionBox
 
 
 class Playground:
@@ -63,3 +64,16 @@ class Playground:
 
         return circuit_list[0].get_size() * circuit_list[1].get_size() * \
             circuit_list[2].get_size()
+
+    def create_from_string(input: str):
+        result = Playground()
+        for line in input.splitlines():
+            coordinates = line.split(",")
+            box = JunctionBox(
+                int(coordinates[0]),
+                int(coordinates[1]),
+                int(coordinates[2])
+            )
+            result.add_junction_box(box)
+
+        return result
