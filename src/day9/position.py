@@ -4,7 +4,7 @@ class Position:
         self.x = x
         self.y = y
 
-    def size_of_rectangel_with(self, other: 'Position') -> int:
+    def size_of_rectangle_with(self, other: 'Position') -> int:
         width = abs(self.x - other.x)
         height = abs(self.y - other.y)
         return width * height
