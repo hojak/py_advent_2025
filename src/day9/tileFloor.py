@@ -26,3 +26,14 @@ class TileFloor:
 
         return pairs[0][0].size_of_rectangle_with(pairs[0][1])
 
+    def create_from_string(floor_string: str) -> 'TileFloor':
+        floor = TileFloor()
+
+        line_number = 0
+        for line in floor_string.splitlines():
+            for index, char in enumerate(line):
+                if char == '#':
+                    floor.add_tile(Position(index, line_number))
+            line_number += 1
+
+        return floor

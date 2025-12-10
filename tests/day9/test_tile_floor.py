@@ -24,3 +24,12 @@ def test_get_size_of_biggest_rectangle():
 
     assert floor.get_size_of_bissgest_rectangle() == 12
 
+
+def test_create_from_string():
+    floor = TileFloor.create_from_string("...#.\n..#..")
+
+    for tile in floor.tiles:
+        print(f"Tile at ({tile.x}, {tile.y})")
+
+    assert len(floor.tiles) == 2
+    assert floor.get_size_of_bissgest_rectangle() == 4
