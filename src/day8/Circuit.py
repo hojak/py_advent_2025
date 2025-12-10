@@ -1,4 +1,4 @@
-class Curcuit():
+class Circuit():
 
     def __init__(self, initial_junction_boxes=[]):
         self.junction_boxes = initial_junction_boxes
