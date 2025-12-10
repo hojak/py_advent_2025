@@ -1,11 +1,10 @@
 class Circuit():
 
     def __init__(self, initial_junction_boxes=[]):
-        self.junction_boxes = initial_junction_boxes
+        self.junction_boxes = set(initial_junction_boxes)
 
     def add_junction_box(self, junction_box):
-        if (junction_box not in self.junction_boxes):
-            self.junction_boxes.append(junction_box)
+        self.junction_boxes.add(junction_box)
 
     def get_size(self):
         return len(self.junction_boxes)

@@ -37,7 +37,7 @@ def test_get_circuits_for_single_junction_box():
 
     assert len(circuits) == 1
     assert circuits[0].get_size() == 1
-    assert circuits[0].get_junction_boxes() == [JunctionBox(1, 1, 1)]
+    assert JunctionBox(1, 1, 1) in circuits[0].get_junction_boxes()
 
 
 def test_get_initial_circuits_for_multiple_junction_boxes():
