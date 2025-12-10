@@ -26,7 +26,7 @@ def test_get_size_of_biggest_rectangle():
 
 
 def test_create_from_string():
-    floor = TileFloor.create_from_string("...#.\n..#..")
+    floor = TileFloor.create_from_string("1,1\n2,2")
 
     for tile in floor.tiles:
         print(f"Tile at ({tile.x}, {tile.y})")
