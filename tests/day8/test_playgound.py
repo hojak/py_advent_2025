@@ -10,3 +10,17 @@ def test_create_with_three_junction_boxes():
     playground.add_junction_box(JunctionBox(3, 3, 3))
 
     assert playground.number_of_boxes() == 3
+
+
+def test_get_closest_pairs():
+    playground = Playground()
+
+    playground.add_junction_box(JunctionBox(1, 1, 1))
+    playground.add_junction_box(JunctionBox(3, 3, 3))
+    playground.add_junction_box(JunctionBox(4, 4, 4))
+    playground.add_junction_box(JunctionBox(8, 8, 8))
+
+    assert (JunctionBox(3, 3, 3), JunctionBox(4, 4, 4)) == playground.get_closest_pair(0)
+    assert (JunctionBox(1, 1, 1), JunctionBox(3, 3, 3)) == playground.get_closest_pair(1)
+    assert (JunctionBox(1, 1, 1), JunctionBox(4, 4, 4)) == playground.get_closest_pair(2)
+    
