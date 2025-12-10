@@ -39,7 +39,7 @@ class Playground:
 
     def get_circuits(self) -> list:
         return self.circuits
-    
+
     def get_number_of_circuits(self) -> int:
         return len(self.circuits)
 
@@ -56,3 +56,10 @@ class Playground:
             if junction_box in circuit.get_junction_boxes():
                 return circuit
         return None
+
+    def get_check_value(self) -> int:
+        circuit_list = list(self.circuits)
+        circuit_list.sort(key=lambda c: c.get_size(), reverse=True)
+
+        return circuit_list[0].get_size() * circuit_list[1].get_size() * \
+            circuit_list[2].get_size()

@@ -92,3 +92,18 @@ def test_set_behaviour_of_playground():
 
     playground.add_junction_box(JunctionBox(1, 1, 1))
     assert playground.get_number_of_circuits() == 2
+
+
+def test_check_value():
+    playground = Playground()
+
+    playground.add_junction_box(JunctionBox(1, 1, 1))
+    playground.add_junction_box(JunctionBox(3, 3, 3))
+    playground.add_junction_box(JunctionBox(4, 4, 4))
+    playground.add_junction_box(JunctionBox(8, 8, 8))
+    playground.add_junction_box(JunctionBox(9, 9, 9))
+
+    playground.connect_boxes(JunctionBox(1, 1, 1), JunctionBox(3, 3, 3))
+    playground.connect_boxes(JunctionBox(4, 4, 4), JunctionBox(8, 8, 8))
+    
+    assert playground.get_check_value() == 4
