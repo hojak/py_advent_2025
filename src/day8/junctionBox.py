@@ -20,7 +20,7 @@ class JunctionBox:
             self.x == value.x and self.y == value.y and self.z == value.z
 
     def __str__(self):
-        return "JunctionBox({self.x},{self.y},{self.z})"
+        return "JunctionBox({},{},{})".format(self.x, self.y, self.z)
 
     def __hash__(self):
         return hash((self.x, self.y, self.z))
