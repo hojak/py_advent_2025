@@ -1,12 +1,17 @@
+from day8.Circuit import Curcuit
+
+
 class Playground:
 
     def __init__(self):
         self.junction_boxes = []
         self.pairs = []
+        self.circuits = []
 
     def add_junction_box(self, junction_box):
         self.pairs = []
         self.junction_boxes.append(junction_box)
+        self.circuits.append(Curcuit([junction_box]))
 
     def number_of_boxes(self) -> int:
         return len(self.junction_boxes)
@@ -25,9 +30,8 @@ class Playground:
                     self.junction_boxes[first],
                     self.junction_boxes[second]
                 ))
-                
-        print(self.pairs)
-                
+
         self.pairs.sort(key=lambda pair: pair[0].distance_to(pair[1]))
-        
-        print(self.pairs)
+
+    def get_circuits(self) -> list:
+        return self.circuits
