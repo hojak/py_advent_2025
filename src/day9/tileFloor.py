@@ -4,27 +4,33 @@ from day9.position import Position
 class TileFloor:
     def __init__(self):
         self.tiles = []
+        self.all_rectangles_sorted = []
 
     def add_tile(self, position: 'Position'):
         self.tiles.append(position)
 
     def get_size_of_bissgest_rectangle(self) -> int:
-        if (len(self.tiles) < 2):
+        if len(self.all_rectangles_sorted) == 0:
+            self.prepare_all_rectangles_sorted()
+            
+        if (len(self.all_rectangles_sorted) == 0):
             return 0
 
-        pairs = []
+        largest_rectangle = self.all_rectangles_sorted[0]
+        return largest_rectangle[0].size_of_rectangle_with(largest_rectangle[1])
+    
+    def prepare_all_rectangles_sorted(self):
+        self.all_rectangles_sorted = []
         for first_index in range(len(self.tiles)-1):
             for second_index in range(first_index + 1, len(self.tiles)):
-                pairs.append((
+                self.all_rectangles_sorted.append((
                     self.tiles[first_index], self.tiles[second_index]
                 ))
 
-        pairs.sort(
+        self.all_rectangles_sorted.sort(
             key=lambda pair: pair[0].size_of_rectangle_with(pair[1]),
             reverse=True
         )
-
-        return pairs[0][0].size_of_rectangle_with(pairs[0][1])
 
     def create_from_string(coordinates: str) -> 'TileFloor':
         floor = TileFloor()

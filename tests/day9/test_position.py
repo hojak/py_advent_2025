@@ -31,3 +31,4 @@ def test_greater_than():
     assert position_3 > position_1
     assert position_3 > position_2
     assert position_4 > position_2
+
