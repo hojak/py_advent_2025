@@ -1,0 +1,9 @@
+from day10.machine import Machine
+
+
+def test_init_from_string():
+    machine = Machine("[.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}")
+
+    assert machine is not None
+    assert machine.get_indicator_lights() is not None
+    assert machine.get_buttons() is not None
