@@ -33,6 +33,22 @@ def test_create_from_string():
 
     assert len(floor.tiles) == 2
     assert floor.get_size_of_bissgest_rectangle() == 4
+
+
+def test_rectangle_completely_inside():
+    floor = TileFloor()
+
+    floor.add_tile(Position(1, 1))
+    floor.add_tile(Position(2, 1))
+    floor.add_tile(Position(2, 10))
+    floor.add_tile(Position(10, 10))
+    floor.add_tile(Position(10, 12))
+    floor.add_tile(Position(1, 12))
+
+    assert floor.rectangle_is_completely_inside(0, 2)
+    assert not floor.rectangle_is_completely_inside(1, 4)
+
+
 def test_is_right_oriented():
     floor = TileFloor()
 

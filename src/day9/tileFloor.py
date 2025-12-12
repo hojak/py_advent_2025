@@ -47,6 +47,26 @@ class TileFloor:
             floor.add_tile(Position(x, y))
 
         return floor
+
+    def rectangle_is_completely_inside(self, first_index: int, second_index: int) -> bool:
+        point1 = self.tiles[first_index]
+        point2 = self.tiles[second_index]
+
+        min_x = min(point1.x, point2.x)
+        max_x = max(point1.x, point2.x)
+        min_y = min(point1.y, point2.y)
+        max_y = max(point1.y, point2.y)
+
+        print(f"Checking rectangle: ({min_x}, {min_y}) to ({max_x}, {max_y})")
+
+        for tile_position in self.tiles:
+            if min_x < tile_position.x and max_x > tile_position.x \
+                    and min_y < tile_position.y and max_y > tile_position.y:
+                print("Tile ", tile_position, " is ins X")
+                return False
+
+        return True
+
     def is_right_oriented(self) -> bool:
         turns = 0
 
