@@ -13,6 +13,7 @@ class Machine:
         )
 
         self.init_buttons(parts[1:-1])
+        self.graph = {}
 
     def init_buttons(self, button_definitions: list[str]):
         self.buttons = []
@@ -25,22 +26,36 @@ class Machine:
     def get_buttons(self) -> list['Button']:
         return self.buttons
 
-    def get_minimal_buttons_to_press(self) -> list[int]:
-        self.set_up_lightning_graph()
+    def get_minimal_buttons_sequence(self) -> list[int]:
+        sequence = self.bfs_shortest_path(
+            '.' * len(self.target_light_configuration),
+            self.target_light_configuration
+        )
 
-        return []
+        return sequence
 
-    def set_up_lightning_graph(self):
-        self.graph = {}
+    def bfs_shortest_path(self, start: str, goal: str) -> list[int]:
+        found_paths = {start: []}
+        queue = [(start, [])]
 
-        for possible_light_configuration \
-                in Machine.create_all_light_configurations(
-                    self.indicator_lights.number_of_lights()
-                ):
-            self.graph[possible_light_configuration] = {}
-            
-        # todo
+        while queue:
+            (current_lights, path_so_far) = queue.pop(0)
 
+            if current_lights == goal:
+                return path_so_far
+
+            lights = IndicatorLights(current_lights)
+            for button_index, button in enumerate(self.buttons):
+                possible_next_state = lights.push_button(button).status
+
+                if possible_next_state not in found_paths:
+                    new_path = path_so_far + [button_index]
+                    found_paths[possible_next_state] = new_path
+                    queue.append((possible_next_state, new_path))
+
+        return None
+
+    @staticmethod
     def create_all_light_configurations(length: int) -> list[str]:
         result = ['.', '#']
 
