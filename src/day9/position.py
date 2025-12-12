@@ -35,3 +35,7 @@ class Position:
     
     def __str__(self):
         return f"({self.x}, {self.y})"
+    
+    def __sub__(self, other: 'Position') -> 'Position':
+        return Position(self.x - other.x, self.y - other.y)
+

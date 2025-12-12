@@ -47,3 +47,28 @@ class TileFloor:
             floor.add_tile(Position(x, y))
 
         return floor
+    def is_right_oriented(self) -> bool:
+        turns = 0
+
+        work_tiles = self.tiles.copy()
+        work_tiles.append(self.tiles[0])
+        work_tiles.append(self.tiles[1])
+
+        current_route = work_tiles[1] - work_tiles[0]
+
+        for index in range(2, len(work_tiles)):
+            last_route = current_route
+            current_route = work_tiles[index] - work_tiles[index - 1]
+
+            if last_route.y == 0:
+                if last_route.x > 0:
+                    turns += 1 if current_route.y > 0 else -1
+                else:
+                    turns += -1 if current_route.y > 0 else 1
+            else:
+                if last_route.y > 0:
+                    turns += -1 if current_route.x > 0 else 1
+                else:
+                    turns += 1 if current_route.x > 0 else -1
+
+        return turns > 0

@@ -33,3 +33,24 @@ def test_create_from_string():
 
     assert len(floor.tiles) == 2
     assert floor.get_size_of_bissgest_rectangle() == 4
+def test_is_right_oriented():
+    floor = TileFloor()
+
+    floor.add_tile(Position(1, 1))
+    floor.add_tile(Position(5, 1))
+    floor.add_tile(Position(5, 5))
+    floor.add_tile(Position(1, 5))
+
+    assert floor.is_right_oriented()
+
+
+def test_is_not_right_oriented():
+    floor = TileFloor()
+
+    floor.add_tile(Position(1, 1))
+    floor.add_tile(Position(1, 5))
+    floor.add_tile(Position(5, 5))
+    floor.add_tile(Position(5, 1))
+
+    assert not floor.is_right_oriented()
+
