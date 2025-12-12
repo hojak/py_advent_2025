@@ -1,3 +1,6 @@
+from adv25Tools.tools import replace_char_at
+
+
 class Manifold:
 
     def __init__(self, layout: str):
@@ -49,14 +52,14 @@ class Manifold:
 
         for index in range(0, len(beamed_line)):
             if beamed_line[index] == "^" and previous_line[index] == "|":
-                result = Manifold.replace_char_at(result, index, "v")
+                result = replace_char_at(result, index, "v")
                 splitter_timelines = self.timelines_per_row[current_index-1][index]
 
                 if index > 0 and (result[index-1] == "." or result[index-1] == "|"):
-                    result = Manifold.replace_char_at(result, index-1, "|")
+                    result = replace_char_at(result, index-1, "|")
                     self.timelines_per_row[current_index][index-1] += splitter_timelines
                 if index < len(beamed_line) - 1 and (result[index+1] == "." or result[index-1] == "|"):
-                    result = Manifold.replace_char_at(result, index+1, "|")
+                    result = replace_char_at(result, index+1, "|")
                     self.timelines_per_row[current_index][index+1] += splitter_timelines
 
         return result
@@ -69,6 +72,3 @@ class Manifold:
 
     def get_number_of_timelines(self) -> int:
         return sum(self.timelines_per_row[-1])
-
-    def replace_char_at(string: str, index: int, new_char: str) -> str:
-        return string[:index] + new_char + string[index + 1:]

@@ -33,12 +33,6 @@ def test_beam_is_splitted():
     assert manifold.get_number_of_splitted_beams() == 1
 
 
-def test_replace_char_at():
-    assert Manifold.replace_char_at("abcde", 2, "X") == "abXde"
-    assert Manifold.replace_char_at("abcde", 0, "X") == "Xbcde"
-    assert Manifold.replace_char_at("abcde", 4, "X") == "abcdX"
-
-
 def test_number_of_timelines_for_a_single_beam():
     manifold = Manifold(".S.\n...")
     manifold.fire_beam()
