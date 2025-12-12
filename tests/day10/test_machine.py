@@ -21,4 +21,9 @@ def test_button_initialization():
     assert len(machine.get_buttons()) == 5
     assert machine.get_buttons()[0].connected_lights == [3]
     assert machine.get_buttons()[1].connected_lights == [1, 3]
-    
+
+
+def test_get_target_light_configuration():
+    machine = Machine("[.##.#.] (3) (1,3) (2) (2,3) (0,1) {3,5,4,7}")
+
+    assert machine.target_light_configuration == '.##.#.'
