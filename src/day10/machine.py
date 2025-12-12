@@ -24,3 +24,31 @@ class Machine:
 
     def get_buttons(self) -> list['Button']:
         return self.buttons
+
+    def get_minimal_buttons_to_press(self) -> list[int]:
+        self.set_up_lightning_graph()
+
+        return []
+
+    def set_up_lightning_graph(self):
+        self.graph = {}
+
+        for possible_light_configuration \
+                in Machine.create_all_light_configurations(
+                    self.indicator_lights.number_of_lights()
+                ):
+            self.graph[possible_light_configuration] = {}
+            
+        # todo
+
+    def create_all_light_configurations(length: int) -> list[str]:
+        result = ['.', '#']
+
+        for length in range(1, length):
+            new_result = []
+            for temp in result:
+                new_result.append(temp + '.')
+                new_result.append(temp + '#')
+            result = new_result
+
+        return result

@@ -27,3 +27,15 @@ def test_get_target_light_configuration():
     machine = Machine("[.##.#.] (3) (1,3) (2) (2,3) (0,1) {3,5,4,7}")
 
     assert machine.target_light_configuration == '.##.#.'
+
+
+# def test_get_minimal_buttons_to_press():
+#    machine = Machine("[..#] (0) (0,1) (1,2) (2,3) {1,2,3}")
+#
+#    assert len(machine.get_minimal_buttons_to_press()) == 4
+
+
+def test_create_lightning_configurations():
+    assert Machine.create_all_light_configurations(3) == [
+        '...', '..#', '.#.', '.##', '#..', '#.#', '##.', '###'
+    ]
