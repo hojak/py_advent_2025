@@ -1,4 +1,4 @@
-from day7.manifold import Manifold
+from adv25Tools.tools import replace_char_at
 
 
 class IndicatorLights:
@@ -13,7 +13,7 @@ class IndicatorLights:
         new_status = self.status
         for switch_light in button.connected_lights:
             new_light_status = '#' if new_status[switch_light] == '.' else '.'
-            new_status = Manifold.replace_char_at(
+            new_status = replace_char_at(
                 new_status, switch_light, new_light_status)
 
         return IndicatorLights(new_status)
