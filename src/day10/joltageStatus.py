@@ -18,3 +18,6 @@ class JoltageStatus:
             if self.status[index] > joltage:
                 return True
         return False
+
+    def __eq__(self, other: 'JoltageStatus') -> bool:
+        return self.status == other.status
