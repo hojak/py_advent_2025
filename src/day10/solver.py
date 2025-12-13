@@ -9,7 +9,7 @@ class Solver(ProblemSolver):
         for line in self.parsed_input.splitlines():
             print("Processing line:", line)
             machine = Machine(line)
-            minimal_sequence = machine.get_minimal_buttons_sequence()
+            minimal_sequence = machine.get_minimal_buttons_for_start()
             result += len(minimal_sequence)
             print("  found sequence:", minimal_sequence)
         

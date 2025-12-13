@@ -13,7 +13,6 @@ class Machine:
         )
 
         self.init_buttons(parts[1:-1])
-        self.graph = {}
 
     def init_buttons(self, button_definitions: list[str]):
         self.buttons = []
@@ -26,15 +25,17 @@ class Machine:
     def get_buttons(self) -> list['Button']:
         return self.buttons
 
-    def get_minimal_buttons_sequence(self) -> list[int]:
-        sequence = self.bfs_shortest_path(
+    def get_minimal_buttons_for_start(self) -> list[int]:
+        sequence = self.shortest_button_sequence_to_light_config(
             '.' * len(self.target_light_configuration),
             self.target_light_configuration
         )
 
         return sequence
 
-    def bfs_shortest_path(self, start: str, goal: str) -> list[int]:
+    def shortest_button_sequence_to_light_config(self, start: str, goal: str) \
+            -> list[int]:
+
         found_paths = {start: []}
         queue = [(start, [])]
 
@@ -54,3 +55,5 @@ class Machine:
                     queue.append((possible_next_state, new_path))
 
         return None
+
+

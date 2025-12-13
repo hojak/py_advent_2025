@@ -29,8 +29,8 @@ def test_get_target_light_configuration():
     assert machine.target_light_configuration == '.##.#.'
 
 
-def test_get_minimal_buttons_to_press():
+def test_get_minimal_buttons_for_start():
     machine = Machine("[...#] (0) (0,1) (1,2) (2,3) {1,2,3}")
 
-    assert len(machine.get_minimal_buttons_sequence()) == 4
+    assert len(machine.get_minimal_buttons_for_start()) == 4
 
