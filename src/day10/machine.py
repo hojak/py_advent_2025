@@ -14,6 +14,10 @@ class Machine:
 
         self.init_buttons(parts[1:-1])
 
+        self.target_joltage = [
+            int(number) for number in parts[-1][1:-1].split(",")
+        ]
+
     def init_buttons(self, button_definitions: list[str]):
         self.buttons = []
         for definition in button_definitions:
@@ -56,4 +60,5 @@ class Machine:
 
         return None
 
-
+    def get_minimal_buttons_for_joltage(self) -> list[int]:
+        return [0]

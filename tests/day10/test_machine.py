@@ -34,3 +34,13 @@ def test_get_minimal_buttons_for_start():
 
     assert len(machine.get_minimal_buttons_for_start()) == 4
 
+
+def test_minimal_buttons_for_joltage():
+    machine = Machine("[...#] (0) (0,1) (1,2) (2,3) {1,0,0,0}")
+
+    assert machine.get_minimal_buttons_for_joltage() == [0]
+
+
+def test_joltage_init():
+    machine = Machine("[...#] (0) (0,1) (1,2) (02,3) {1,0,0,4}")
+    assert machine.target_joltage == [1, 0, 0, 4]
