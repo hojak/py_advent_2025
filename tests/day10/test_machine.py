@@ -34,8 +34,3 @@ def test_get_minimal_buttons_to_press():
 
     assert len(machine.get_minimal_buttons_sequence()) == 4
 
-
-def test_create_lightning_configurations():
-    assert Machine.create_all_light_configurations(3) == [
-        '...', '..#', '.#.', '.##', '#..', '#.#', '##.', '###'
-    ]

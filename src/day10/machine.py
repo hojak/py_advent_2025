@@ -54,16 +54,3 @@ class Machine:
                     queue.append((possible_next_state, new_path))
 
         return None
-
-    @staticmethod
-    def create_all_light_configurations(length: int) -> list[str]:
-        result = ['.', '#']
-
-        for length in range(1, length):
-            new_result = []
-            for temp in result:
-                new_result.append(temp + '.')
-                new_result.append(temp + '#')
-            result = new_result
-
-        return result
