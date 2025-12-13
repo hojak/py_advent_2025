@@ -16,8 +16,8 @@ def test_press_button():
 def test_joltage_to_high_for():
     status = JoltageStatus([5, 4, 3, 2])
 
-    assert status.joltage_to_high_for([3, 4, 5, 6]) is True
-    assert status.joltage_to_high_for([10, 10, 50, 60]) is False
+    assert status.joltage_to_high_for(JoltageStatus([3, 4, 5, 6])) is True
+    assert status.joltage_to_high_for(JoltageStatus([10, 10, 50, 60])) is False
 
 
 def test_eq_is_true():

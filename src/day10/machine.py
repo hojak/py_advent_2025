@@ -1,5 +1,6 @@
 from day10.button import Button
 from day10.indicatorLights import IndicatorLights
+from day10.joltageStatus import JoltageStatus
 
 
 class Machine:
@@ -61,4 +62,25 @@ class Machine:
         return None
 
     def get_minimal_buttons_for_joltage(self) -> list[int]:
-        return [0]
+        target_joltage = JoltageStatus(self.target_joltage)
+        queue = [(
+            JoltageStatus([0] * self.indicator_lights.number_of_lights()),
+            []
+        )]
+        visited = set([queue[0][0]])
+
+        while queue:
+            (current_joltage, path_so_far) = queue.pop(0)
+            if (current_joltage == target_joltage):
+                return path_so_far
+
+            for button_index, button in enumerate(self.buttons):
+                possible_next_joltage = current_joltage.push_button(button)
+                
+                if (possible_next_joltage not in visited
+                        and not possible_next_joltage.joltage_to_high_for(target_joltage)):
+                    visited.add(possible_next_joltage)
+                    new_path = path_so_far + [button_index]
+                    queue.append((possible_next_joltage, new_path))
+                        
+        return None
