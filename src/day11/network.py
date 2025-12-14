@@ -39,5 +39,5 @@ class Network:
 
         return result
 
-    def find_number_of_possible_paths(self, start: str, goal: str) -> int:
+    def get_number_of_possible_paths(self, start: str, goal: str) -> int:
         return len(self.find_all_paths_from_to(start, goal))

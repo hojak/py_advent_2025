@@ -24,4 +24,4 @@ ggg: out
 hhh: ccc fff iii
 iii: out''')
     
-    assert network.find_number_of_possible_paths("you", "out") == 5
+    assert network.get_number_of_possible_paths("you", "out") == 5
